@@ -382,11 +382,19 @@ public class WMethod{
      Utilities.printAllTestCases(tests); // Print tests.
      
 
-     
+     boolean outputPattern;
      //Iterate through all test cases. Run them agains FSM Utilities.runFSM() method.
      for(int i = 0; i < tests.size(); i++) {
-    	 Utilities.runFSM(FSM, 1, tests.get(i).replace("", " "), " "); 
-          }
+    	 outputPattern= Utilities.runFSM(FSM, 1, tests.get(i).replace("", " "), " "); 
+          
+     
+     System.out.print("@Test\npublic void testCase" + i + "(){\n\tassert");
+	 if(outputPattern)
+		 System.out.print("True(JamesBond.bondRegex(\"" + tests.get(i).toString() + "\"));}\n");
+	 else
+		 System.out.print("False(JamesBond.bondRegex(\"" + tests.get(i).toString() + "\"));}\n");
+ }
+     
      
    }// End of main()
    
